@@ -68,6 +68,10 @@ StyleCopReport.xml
 *_i.c
 *_p.c
 *_h.h
+*.slc
+*.user
+*.filter
+
 *.ilk
 *.meta
 *.obj
