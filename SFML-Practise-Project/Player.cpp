@@ -8,7 +8,7 @@ Player::Player(sf::Texture* texture, sf::Vector2f playerSize, sf::Vector2u image
 	row = 0;
 	faceRight = true;
 
-	sf::Vector2f playerPos(100, 450);
+	sf::Vector2f playerPos(800, 500);
 	body.setSize(playerSize);
 	body.setOrigin(playerSize.x / 2, playerSize.y / 2);
 	body.setPosition(playerPos);
@@ -32,7 +32,11 @@ void Player::Update(float deltaTime) {
 		animation.Update(row, 0U);
 	}
 	else {
-		row = 1;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LShift)) {
+			movement.x *= 1.45, movement.y *= 1.45;
+			row = 2;
+		}
+		else row = 1;
 		if (!movement.y) faceRight = movement.x > 0;
 		velocity = 100.0f;
 		animation.Update(row, deltaTime, faceRight);
