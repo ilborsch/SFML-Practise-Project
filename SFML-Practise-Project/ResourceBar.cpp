@@ -1,17 +1,15 @@
 #include "ResourceBar.h"
+#include "DEFINITIONS.hpp"
 
-ResourceBar::ResourceBar(sf::Texture* texture, sf::Vector2f barSize, sf::Vector2u imageCount, float switchTime)
-	: animation(texture, imageCount, switchTime)
+ResourceBar::ResourceBar(sf::Texture* texture, sf::Vector2f barSize, sf::Vector2u imageCount)
+	: animation(texture, imageCount, 0.0f)
 {
 	isBlank = false;
 	column = 0;
-	timeToResourceEnding = 3.0f;
+	timeToResourceEnding = TIME_TO_RESOURCE_ENDING;
 	columnStages = imageCount.x;
-
-	sf::Vector2f barPos(100, 100);
 	bar.setSize(barSize);
 	bar.setOrigin(barSize.x / 2, barSize.y / 2);
-	bar.setPosition(barPos);
 	bar.setTexture(texture);
 }
 
@@ -30,27 +28,36 @@ void ResourceBar::Update(float deltaTime) {
 			isBlank = true;
 			column = 0;
 		}
-		if (timeToResourceEnding == 3.0f) {
+		if (timeToResourceEnding == TIME_TO_RESOURCE_ENDING) {
 			column = 0;
 			animation.Update(0U, column);
 		}
 		else {
-			column = columnStages - trunc(timeToResourceEnding) - 2;
+			column = columnStages - (unsigned int)trunc(timeToResourceEnding) - 2;
 			animation.Update(0U, column);
 		}
 
 	}
 	else {
-		if (timeToResourceEnding == 6.0f) {
+		if (timeToResourceEnding == TIME_TO_RESOURCE_ENDING * 2) {
 			timeToResourceEnding /= 2;
 			isBlank = false;
 			column = 0;
 		}
 		else {
-			timeToResourceEnding = std::min(timeToResourceEnding + deltaTime, 6.0f);
-			column = trunc(timeToResourceEnding / 2);
+			timeToResourceEnding = std::min(timeToResourceEnding + deltaTime, TIME_TO_RESOURCE_ENDING * 2);
+			column = (unsigned int)trunc(timeToResourceEnding / 2);
 			animation.Update(1U, column);
 		}
 	}
 	bar.setTextureRect(animation.textureRect);
+}
+
+void ResourceBar::Move(sf::Vector2f movement) {
+	bar.move(movement);
+}
+
+void ResourceBar::SetPosition(sf::Vector2f barPosition)
+{
+	bar.setPosition(barPosition);
 }

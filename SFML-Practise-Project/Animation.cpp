@@ -3,7 +3,6 @@
 
 Animation::Animation(sf::Texture* texture, sf::Vector2u imageCount, float switchTime) {
 	this->imageCount = imageCount;
-	this->switchTime = switchTime;
 	this->Y = Y;
 
 	totalTime = 0.0f;
@@ -11,15 +10,16 @@ Animation::Animation(sf::Texture* texture, sf::Vector2u imageCount, float switch
 	currentImage.y = this->Y;
 	textureRect.width = texture->getSize().x / float(imageCount.x);
 	textureRect.height = texture->getSize().y / float(imageCount.y);
+	setAnimationDelay(switchTime);
 }
 
 void Animation::Update(unsigned int row, float deltaTime, bool faceRight, int minColumn, int maxColumn) {
-	if (maxColumn == -1) maxColumn = imageCount.x;
-	if (minColumn == -1) minColumn = 0;
+	if (maxColumn == NO_VALUE) maxColumn = imageCount.x;
+	if (minColumn == NO_VALUE) minColumn = 0;
 	totalTime += deltaTime;
 	currentImage.y = row;
-	if (totalTime >= switchTime) {
-		totalTime -= switchTime;
+	if (totalTime >= animationDelay) {
+		totalTime -= animationDelay;
 		currentImage.x++;
 
 		if (currentImage.x >= maxColumn)
