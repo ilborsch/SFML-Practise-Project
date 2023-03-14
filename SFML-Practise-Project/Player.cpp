@@ -28,11 +28,7 @@ void Player::Update(float deltaTime) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) movement.x += velocity * deltaTime;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) movement.y += velocity * deltaTime;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) movement.y -= velocity * deltaTime;
-	//if (!(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)
-	//	|| sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))) {
-	//	movement.x = 0.0f;
-	//	movement.y = 0.0f;
-	//}
+
 	if (!movement.x && !movement.y) {
 		row = 5;
 		animation.Update(row, 0U);

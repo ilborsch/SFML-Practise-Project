@@ -4,6 +4,7 @@
 #include "Animation.h"
 #include "Player.h"
 #include "ResourceBar.h"
+#include "Menu.h"
 #include "DEFINITIONS.hpp"
 
 
@@ -16,31 +17,25 @@ int main() {
 
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_NAME, sf::Style::Close | sf::Style::Resize);
 	window.setFramerateLimit(FRAME_RATE_LIMIT);
-
-	//sf::RectangleShape player(sf::Vector2f(130, 130));
-	//sf::Vector2f playerPos(640, 360);
-	//player.setOrigin(65, 65);
-	//player.setPosition(playerPos);
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(float(VIEW_WIDTH), float(VIEW_HEIGHT)));
+
 	sf::Texture playerTexture, background, staminaTexture;
 	playerTexture.loadFromFile(PLAYER_TEXTURE_PATH);
 	background.loadFromFile(BACKGROUND_TEXTURE_PATH);
 	staminaTexture.loadFromFile(STAMINA_TEXTURE_PATH);
 	sf::Sprite backgroundSprite(background);
-	//player.setTexture(&playerTexture);
 
-	//sf::Vector2u textureSize = playerTexture.getSize();
-	//textureSize.x /= 8, textureSize.y /= 11;
-	// 
-	//player.setTextureRect(sf::IntRect(0, textureSize.y * 5, textureSize.x, textureSize.y));
+	Menu menu;
 	Player player(&playerTexture, sf::Vector2f(PLAYER_SIZE, PLAYER_SIZE), sf::Vector2u(8, 11), WALK_ANIMATION_DELAY, PLAYER_VELOCITY, &staminaTexture, sf::Vector2f(STAMINA_BAR_WIDTH, STAMINA_BAR_HEIGHT), sf::Vector2u(4, 2));
 	float deltaTime = 0.0f;
 	sf::Clock clock;
 	sf::Music music;
+
 	music.openFromFile(MUSIC_PATH);
 	music.setLoop(true);
 	music.play();
 	music.setVolume(MUSIC_VOLUME);
+
 	while (window.isOpen()) {
 		sf::Event event;
 		deltaTime = clock.restart().asSeconds();
@@ -49,20 +44,47 @@ int main() {
 			switch (event.type) {
 				case event.Closed:
 					window.close();
-
-					break;
+					return EXIT_SUCCESS;
 				case event.Resized:
 					std::cout << event.size.width << " " << event.size.height << std::endl;
 					ResizeView(window, view);
-					break;
+					break;				
 			}
 		}
-		player.Update(deltaTime);
-		view.setCenter(player.getPosition());
+
 		window.clear();
-		window.setView(view);
-		window.draw(backgroundSprite);
-		player.Draw(window);
+		if (menu.IsOpened()) {
+			switch (event.type) {
+				case sf::Event::KeyReleased:
+					if (event.key.code == sf::Keyboard::W || sf::Event::KeyReleased == sf::Keyboard::Up)
+						menu.Move(false);
+					else if (event.key.code == sf::Keyboard::S || sf::Event::KeyReleased == sf::Keyboard::Down)
+						menu.Move(true);
+					break;
+			}
+			menu.Draw(window);
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+				switch (menu.getButtonIndex()) {
+					case menu.PlayButton:
+						menu.setMenuState(false);
+						break;
+					case menu.AboutButton:
+						std::cout << "Have not done yet ;(" << std::endl;
+						break;
+					case menu.ExitButton:
+						window.close();
+						return EXIT_SUCCESS;
+				}
+			}
+		}
+		else {
+			player.Update(deltaTime);
+			view.setCenter(player.getPosition());
+			window.setView(view);
+			window.draw(backgroundSprite);
+			player.Draw(window);
+		}
 		window.display();
 	}
+	return EXIT_SUCCESS;
 }

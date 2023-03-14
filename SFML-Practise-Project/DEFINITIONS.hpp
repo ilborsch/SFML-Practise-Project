@@ -31,4 +31,9 @@
 
 #define WALK_ANIMATION_DELAY 0.12f
 #define TIME_TO_RESOURCE_ENDING 3.0f
-
+#define MENU_BUTTONS_AMOUNT 3
+#define MENU_FONT_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Fonts/menu_font.otf"
+#define MENU_BACKGROUND_TEXTURE_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Images/menu_background.png"
+#define BUTTON_POSITION_X 500
+#define BUTTON_POSITION_Y 190
+#define MENU_BUTTON_CHAR_SIZE 90.0f
