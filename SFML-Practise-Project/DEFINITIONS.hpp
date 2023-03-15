@@ -1,14 +1,17 @@
 
 #define NO_VALUE -1
 
-#define WINDOW_WIDTH 1366
-#define WINDOW_HEIGHT 768
+#define WINDOW_WIDTH 1600
+#define WINDOW_HEIGHT 900
 #define GAME_NAME "Borshch and The Tux"
 #define FRAME_RATE_LIMIT 60
 #define BACKGROUND_TEXTURE_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Images/background1.png"
 
 #define VIEW_WIDTH 854
 #define VIEW_HEIGHT 480
+
+#define MAIN_MENU_VIEW_WIDTH 1280
+#define MAIN_MENU_VIEW_HEIGHT 720
 
 #define PLAYER_SIZE 125
 #define PLAYER_VELOCITY 110.0f
@@ -34,6 +37,7 @@
 #define MENU_BUTTONS_AMOUNT 3
 #define MENU_FONT_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Fonts/menu_font.otf"
 #define MENU_BACKGROUND_TEXTURE_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Images/menu_background.png"
-#define BUTTON_POSITION_X 500
-#define BUTTON_POSITION_Y 190
-#define MENU_BUTTON_CHAR_SIZE 90.0f
+#define BUTTON_POSITION_X 540.0f
+#define BUTTON_POSITION_Y 200.0f
+#define MENU_BUTTON_CHAR_SIZE 80.0f
+#define MENU_BUTTON_THICKNESS 7.0f

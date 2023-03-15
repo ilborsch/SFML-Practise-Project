@@ -8,9 +8,9 @@ public:
 	Menu();
 	void Draw(sf::RenderWindow& window);
 	bool IsOpened() { return isOpened; };
-	inline void setMenuState(bool flag) { isOpened = flag; }
+	inline void changeMenuState() { isOpened = !isOpened; }
 	inline int getButtonIndex() { return buttonIndex; };
-	void Move(bool isDown);
+	void Move(float deltaTime);
 	enum Buttons {
 		PlayButton,
 		AboutButton,
@@ -23,5 +23,7 @@ private:
 	sf::Texture menu_texture;
 	sf::Sprite MenuBackgroundSprite;
 	bool isOpened;
+	const float switchTime = 0.33f;
+	float timeToNewSwitch = 0.0f;
 };
 

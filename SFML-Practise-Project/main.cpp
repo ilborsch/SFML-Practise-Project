@@ -17,7 +17,7 @@ int main() {
 
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), GAME_NAME, sf::Style::Close | sf::Style::Resize);
 	window.setFramerateLimit(FRAME_RATE_LIMIT);
-	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(float(VIEW_WIDTH), float(VIEW_HEIGHT)));
+	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(float(VIEW_WIDTH), float(VIEW_HEIGHT))), main_menu_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(float(MAIN_MENU_VIEW_WIDTH), float(MAIN_MENU_VIEW_HEIGHT)));
 
 	sf::Texture playerTexture, background, staminaTexture;
 	playerTexture.loadFromFile(PLAYER_TEXTURE_PATH);
@@ -51,22 +51,16 @@ int main() {
 					break;				
 			}
 		}
-
+		if (!menu.IsOpened() && sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			menu.changeMenuState();
 		window.clear();
 		if (menu.IsOpened()) {
-			switch (event.type) {
-				case sf::Event::KeyReleased:
-					if (event.key.code == sf::Keyboard::W || sf::Event::KeyReleased == sf::Keyboard::Up)
-						menu.Move(false);
-					else if (event.key.code == sf::Keyboard::S || sf::Event::KeyReleased == sf::Keyboard::Down)
-						menu.Move(true);
-					break;
-			}
+			menu.Move(deltaTime);
 			menu.Draw(window);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 				switch (menu.getButtonIndex()) {
 					case menu.PlayButton:
-						menu.setMenuState(false);
+						menu.changeMenuState();
 						break;
 					case menu.AboutButton:
 						std::cout << "Have not done yet ;(" << std::endl;
@@ -76,6 +70,8 @@ int main() {
 						return EXIT_SUCCESS;
 				}
 			}
+			main_menu_view.setCenter(MAIN_MENU_VIEW_WIDTH / 2, MAIN_MENU_VIEW_HEIGHT / 2);
+			window.setView(main_menu_view);
 		}
 		else {
 			player.Update(deltaTime);
