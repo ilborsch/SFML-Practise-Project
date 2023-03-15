@@ -152,6 +152,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Border.cpp" />
+    <ClCompile Include="BorderHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -159,6 +161,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
+    <ClInclude Include="Border.h" />
+    <ClInclude Include="BorderHandler.h" />
     <ClInclude Include="DEFINITIONS.hpp" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />

@@ -22,7 +22,7 @@ Player::Player(sf::Texture* textureA, sf::Vector2f playerSize, sf::Vector2u imag
 }
 
 void Player::Update(float deltaTime) {
-	sf::Vector2f movement;
+	movement.x = 0.0f, movement.y = 0.0f;
 	staminaBar.Update(deltaTime);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) movement.x -= velocity * deltaTime;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) movement.x += velocity * deltaTime;
@@ -56,10 +56,6 @@ void Player::Update(float deltaTime) {
 void Player::Draw(sf::RenderWindow& window) {
 	window.draw(body);
 	staminaBar.Draw(window);
-}
-
-sf::Vector2f Player::getPosition() {
-	return body.getPosition();
 }
 
 void Player::Move(sf::Vector2f movement) {

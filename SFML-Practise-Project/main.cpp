@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "ResourceBar.h"
 #include "Menu.h"
+#include "Border.h"
+#include "BorderHandler.h"
 #include "DEFINITIONS.hpp"
 
 
@@ -27,6 +29,7 @@ int main() {
 
 	Menu menu;
 	Player player(&playerTexture, sf::Vector2f(PLAYER_SIZE, PLAYER_SIZE), sf::Vector2u(8, 11), WALK_ANIMATION_DELAY, PLAYER_VELOCITY, &staminaTexture, sf::Vector2f(STAMINA_BAR_WIDTH, STAMINA_BAR_HEIGHT), sf::Vector2u(4, 2));
+	BorderHandler borders;
 	float deltaTime = 0.0f;
 	sf::Clock clock;
 	sf::Music music;
