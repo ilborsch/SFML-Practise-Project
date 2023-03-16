@@ -23,7 +23,7 @@ private:
 	sf::Texture menu_texture;
 	sf::Sprite MenuBackgroundSprite;
 	bool isOpened;
-	const float switchTime = 0.33f;
+	const float switchTime = 0.15f;
 	float timeToNewSwitch = 0.0f;
 };
 

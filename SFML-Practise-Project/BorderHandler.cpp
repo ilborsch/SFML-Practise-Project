@@ -12,3 +12,10 @@ void BorderHandler::checkBorders(Player& player, float deltaTime)
 		it->checkCollision(player, deltaTime);
 	}
 }
+
+void BorderHandler::Draw(sf::RenderWindow& window)
+{
+	for (auto it = Begin(); it != End(); ++it) {
+		it->Draw(window);
+	}
+}

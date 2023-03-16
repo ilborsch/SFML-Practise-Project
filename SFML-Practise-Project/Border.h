@@ -7,11 +7,10 @@ class Border
 {
 public:
 	Border(sf::Vector2f size, sf::Vector2f position, float rotationAngle);
-	sf::Vector2f getPosition();
+	inline sf::Vector2f getPosition() { return body.getPosition(); };
 	void checkCollision(Player& player, float deltaTime);
-private:
-	sf::Vector2f left_top_point, right_bottom_point;
-	sf::RectangleShape body;
-	float rotationAngle;
 	bool isCollide(Player& player);
+	void Draw(sf::RenderWindow& window);
+private:
+	sf::RectangleShape body;
 };
