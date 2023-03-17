@@ -66,10 +66,9 @@ int main() {
 	PortalActivationFont.loadFromFile(PORTAL_FONT_PATH);
 	PortalActivationText.setFont(PortalActivationFont);
 	PortalActivationText.setString("Press [Enter] to continue your path...");
-	PortalActivationText.setOutlineThickness(2.0f);
 	PortalActivationText.setFillColor(sf::Color::Black);
 	PortalActivationText.setPosition(PORTAL_TEXT_POSITION_X, PORTAL_TEXT_POSITION_Y);
-	PortalActivationText.setCharacterSize(22.0f);
+	PortalActivationText.setCharacterSize(16.0f);
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -115,7 +114,6 @@ int main() {
 			window.setView(view);
 			window.draw(backgroundSprite);
 			if (PortalActivationArea.isCollide(player)) {
-				std::cout << player.getPosition().x << " " << player.getPosition().y << std::endl;
 				window.draw(PortalActivationText);
 			}
 			player.Draw(window);

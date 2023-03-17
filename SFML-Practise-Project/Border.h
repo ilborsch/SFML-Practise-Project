@@ -11,6 +11,7 @@ public:
 	void checkCollision(Player& player, float deltaTime);
 	bool isCollide(Player& player);
 	void Draw(sf::RenderWindow& window);
+	void Move(sf::Vector2f movement) { body.move(movement); }
 private:
 	sf::RectangleShape body;
 };

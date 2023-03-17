@@ -42,10 +42,10 @@
 #define MENU_BUTTON_CHAR_SIZE 80.0f
 #define MENU_BUTTON_THICKNESS 7.0f
 
-#define PORTAL_SIZE 50.0f
+#define PORTAL_SIZE 85.0f
 #define PORTAL_POSITION_X 2656.0f
 #define PORTAL_POSITION_Y 537.0f
-#define PORTAL_FONT_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Fonts/portal_font.otf"
-#define PORTAL_TEXT_POSITION_X 2750.0f
-#define PORTAL_TEXT_POSITION_Y 600.0f
+#define PORTAL_FONT_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Fonts/portal_font.ttf"
+#define PORTAL_TEXT_POSITION_X 2760.0f
+#define PORTAL_TEXT_POSITION_Y 770.0f
 
