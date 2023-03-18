@@ -11,6 +11,7 @@ public:
 	void Update(float deltaTime);
 	void Draw(sf::RenderWindow& window);
 	void Move(sf::Vector2f movement);
+	void Move(float x, float y);
 	inline sf::Vector2f getPosition() { return body.getPosition(); }
 	inline sf::FloatRect getGlobalBounds() { return body.getGlobalBounds(); }
 	inline sf::Vector2f getMovement() { return movement; }

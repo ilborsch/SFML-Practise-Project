@@ -8,7 +8,7 @@
 #include "Border.h"
 #include "BorderHandler.h"
 #include "DEFINITIONS.hpp"
-
+#include "NPC.h"
 
 
 void GenerateBorders(BorderHandler& borders) {
@@ -41,22 +41,12 @@ int main() {
 	window.setFramerateLimit(FRAME_RATE_LIMIT);
 	sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(float(VIEW_WIDTH), float(VIEW_HEIGHT))), main_menu_view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(float(MAIN_MENU_VIEW_WIDTH), float(MAIN_MENU_VIEW_HEIGHT)));
 
-	sf::Texture playerTexture, background, staminaTexture;
+	sf::Texture playerTexture, background, staminaTexture, portal_dudeTexture;
 	playerTexture.loadFromFile(PLAYER_TEXTURE_PATH);
 	background.loadFromFile(BACKGROUND_TEXTURE_PATH);
 	staminaTexture.loadFromFile(STAMINA_TEXTURE_PATH);
+	portal_dudeTexture.loadFromFile(NPC_PORTAL_TEXTURE_PATH);
 	sf::Sprite backgroundSprite(background);
-
-	Menu menu;
-	Player player(&playerTexture, sf::Vector2f(PLAYER_SIZE, PLAYER_SIZE), sf::Vector2u(8, 11), WALK_ANIMATION_DELAY, PLAYER_VELOCITY, &staminaTexture, sf::Vector2f(STAMINA_BAR_WIDTH, STAMINA_BAR_HEIGHT), sf::Vector2u(4, 2));
-	float deltaTime = 0.0f;
-	sf::Clock clock;
-	sf::Music music;
-
-	music.openFromFile(MUSIC_PATH);
-	music.setLoop(true);
-	music.play();
-	music.setVolume(MUSIC_VOLUME);
 
 	BorderHandler borders;
 	GenerateBorders(borders);
@@ -69,6 +59,18 @@ int main() {
 	PortalActivationText.setFillColor(sf::Color::Black);
 	PortalActivationText.setPosition(PORTAL_TEXT_POSITION_X, PORTAL_TEXT_POSITION_Y);
 	PortalActivationText.setCharacterSize(16.0f);
+
+	Menu menu;
+	Player player(&playerTexture, sf::Vector2f(PLAYER_SIZE, PLAYER_SIZE), sf::Vector2u(8, 11), WALK_ANIMATION_DELAY, PLAYER_VELOCITY, &staminaTexture, sf::Vector2f(STAMINA_BAR_WIDTH, STAMINA_BAR_HEIGHT), sf::Vector2u(4, 2));
+	NPC portal_dude(&portal_dudeTexture, PortalActivationFont, sf::Vector2f(NPC_PORTAL_SIZE, NPC_PORTAL_SIZE), sf::Keyboard::Enter, sf::Vector2u(10, 10), 0.20f, 3.0f);
+	float deltaTime = 0.0f;
+	sf::Clock clock;
+	sf::Music music;
+
+	music.openFromFile(MUSIC_PATH);
+	music.setLoop(true);
+	music.play();
+	music.setVolume(MUSIC_VOLUME);
 
 	while (window.isOpen()) {
 		sf::Event event;
@@ -109,13 +111,16 @@ int main() {
 		}
 		else {
 			player.Update(deltaTime);
+			portal_dude.Update(deltaTime, window, player.getGlobalBounds());
 			borders.checkBorders(player, deltaTime);
 			view.setCenter(player.getPosition());
 			window.setView(view);
 			window.draw(backgroundSprite);
 			if (PortalActivationArea.isCollide(player)) {
 				window.draw(PortalActivationText);
+
 			}
+			portal_dude.Draw(window);
 			player.Draw(window);
 		}
 		window.display();

@@ -62,3 +62,7 @@ void Player::Move(sf::Vector2f movement) {
 	body.move(movement);
 	staminaBar.Move(movement);
 }
+
+void Player::Move(float x, float y) {
+	body.setPosition(x, y);
+}

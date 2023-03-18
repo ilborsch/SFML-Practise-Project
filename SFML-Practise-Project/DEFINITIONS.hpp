@@ -49,3 +49,12 @@
 #define PORTAL_TEXT_POSITION_X 2760.0f
 #define PORTAL_TEXT_POSITION_Y 770.0f
 
+#define SPEECH_TEXTURE_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Images/speech.png"
+#define SPEECH_SIZE_X 100.0f
+#define SPEECH_SIZE_Y 100.0f
+#define NPC_PORTAL_SOUND_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Audio/portal_dude_sound.wav"
+#define NPC_PORTAL_SOUND_VOLUME 60.0f
+#define NPC_PORTAL_TEXTURE_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Images/npc_portal.png"
+#define NPC_PORTAL_SIZE 100.0f
+#define NPC_PORTAL_POS_X 1050.0f
+#define NPC_PORTAL_POS_Y 670.0f
