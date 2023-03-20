@@ -62,7 +62,7 @@ int main() {
 
 	Menu menu;
 	Player player(&playerTexture, sf::Vector2f(PLAYER_SIZE, PLAYER_SIZE), sf::Vector2u(8, 11), WALK_ANIMATION_DELAY, PLAYER_VELOCITY, &staminaTexture, sf::Vector2f(STAMINA_BAR_WIDTH, STAMINA_BAR_HEIGHT), sf::Vector2u(4, 2));
-	NPC portal_dude(&portal_dudeTexture, PortalActivationFont, sf::Vector2f(NPC_PORTAL_SIZE, NPC_PORTAL_SIZE), sf::Keyboard::Enter, sf::Vector2u(10, 10), 0.20f, 3.0f);
+	NPC portal_dude(&portal_dudeTexture, PortalActivationFont, sf::Vector2f(NPC_PORTAL_SIZE, NPC_PORTAL_SIZE), sf::Vector2u(10, 10), 0.165f);
 	float deltaTime = 0.0f;
 	sf::Clock clock;
 	sf::Music music;
@@ -111,16 +111,15 @@ int main() {
 		}
 		else {
 			player.Update(deltaTime);
-			portal_dude.Update(deltaTime, window, player.getGlobalBounds());
 			borders.checkBorders(player, deltaTime);
 			view.setCenter(player.getPosition());
 			window.setView(view);
 			window.draw(backgroundSprite);
+			portal_dude.Update(deltaTime, window, player.getGlobalBounds());
 			if (PortalActivationArea.isCollide(player)) {
 				window.draw(PortalActivationText);
-
+				//
 			}
-			portal_dude.Draw(window);
 			player.Draw(window);
 		}
 		window.display();

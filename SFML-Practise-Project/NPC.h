@@ -7,19 +7,21 @@
 class NPC
 {
 public:
-	NPC(sf::Texture* texture, sf::Font& message_font, sf::Vector2f size, sf::Keyboard::Key key, sf::Vector2u imageCount, float switchTime, float cooldown);
+	NPC(sf::Texture* texture, sf::Font& message_font, sf::Vector2f size, sf::Vector2u imageCount, float switchTime);
 	void Update(float deltaTime, sf::RenderWindow& window, sf::FloatRect playerBounds);
-	void Draw(sf::RenderWindow& window);
+
 private:
+	bool intersects(sf::FloatRect playerBounds);
+	bool pressed;
+
 	sf::RectangleShape body;
+	sf::Texture speechTexture;
+	sf::Font npc_message_font;
 	sf::RectangleShape speech;
-	sf::Text NPC_message;
-	sf::Keyboard::Key key;
+	sf::Text NPC_message, interact_message;
 	sf::SoundBuffer sound_buffer;
 	sf::Sound speak_Sound;
+
 	Animation animation;
-	bool pressed;
-	float timeLeftToRefresh;
-	float cooldown;
 };
 
