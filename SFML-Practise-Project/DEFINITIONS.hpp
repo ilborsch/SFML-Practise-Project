@@ -15,7 +15,7 @@
 #define MAIN_MENU_VIEW_HEIGHT 720
 
 #define PLAYER_SIZE 120.0f
-#define PLAYER_VELOCITY 110.0f
+#define PLAYER_VELOCITY 250.0f // 110
 #define PLAYER_TEXTURE_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Images/tux.png"
 #define PLAYER_POS_X 650
 #define PLAYER_POS_Y 670
@@ -44,8 +44,10 @@
 #define MENU_BUTTON_THICKNESS 7.0f
 
 #define PORTAL_SIZE 85.0f
-#define PORTAL_POSITION_X 2656.0f
-#define PORTAL_POSITION_Y 537.0f
+#define PORTAL1_POSITION_X 2656.0f
+#define PORTAL1_POSITION_Y 537.0f
+#define PORTAL2_POSITION_X 3090.0f	
+#define PORTAL2_POSITION_Y 943.0f
 #define PORTAL_FONT_PATH "C:/Users/Illia/source/repos/SFML-Practise-Project/Fonts/portal_font.ttf"
 #define PORTAL_TEXT_POSITION_X 2760.0f
 #define PORTAL_TEXT_POSITION_Y 770.0f

@@ -32,6 +32,21 @@ void GenerateBorders_1(BorderHandler& borders) {
 }
 
 void GenerateBorders_2(BorderHandler& borders) {
+	borders.createBorder(sf::Vector2f(30.0f, WINDOW_HEIGHT), sf::Vector2f(120.0f, 400.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(30.0f, WINDOW_HEIGHT), sf::Vector2f(3500.0f, 400.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(200.0f, 30.0f), sf::Vector2f(3300.0f, 915.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(200.0f, 30.0f), sf::Vector2f(3300.0f, 1190.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(70.0f, 30.0f), sf::Vector2f(140.0f, 1100.0f), 20.0f);
+	borders.createBorder(sf::Vector2f(70.0f, 30.0f), sf::Vector2f(220.0f, 1140.0f), 20.0f);
+	borders.createBorder(sf::Vector2f(70.0f, 30.0f), sf::Vector2f(300.0f, 1158.0f), 20.0f);
+	borders.createBorder(sf::Vector2f(90.0f, 30.0f), sf::Vector2f(393.0f, 1200.0f), 20.0f);
+	borders.createBorder(sf::Vector2f(3500.0f, 30.0f), sf::Vector2f(500.0f, 1195.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(1200.0f, 30.0f), sf::Vector2f(120.0f, 892.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(2000.0f, 30.0f), sf::Vector2f(1800.0f, 892.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(900.0f, 30.0f), sf::Vector2f(1320.0f, 854.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(90.0f, 30.0f), sf::Vector2f(158.0f, 920.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(100.0f, 30.0f), sf::Vector2f(1100.0f, 902.0f), 0.0f);
+	borders.createBorder(sf::Vector2f(100.0f, 30.0f), sf::Vector2f(500.0f, 902.0f), 0.0f);
 }
 
 

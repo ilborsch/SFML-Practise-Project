@@ -37,7 +37,7 @@ int main() {
 	sf::Clock clock;
 	sf::Music music;
 	BorderHandler borders;
-	Border PortalActivationArea(sf::Vector2f(PORTAL_SIZE, PORTAL_SIZE), sf::Vector2f(PORTAL_POSITION_X, PORTAL_POSITION_Y), 0.0f);
+	Border PortalActivationArea(sf::Vector2f(PORTAL_SIZE, PORTAL_SIZE), sf::Vector2f(PORTAL1_POSITION_X, PORTAL1_POSITION_Y), 0.0f);
 	Menu menu;
 	Player player(&playerTexture, sf::Vector2f(PLAYER_SIZE, PLAYER_SIZE), sf::Vector2u(8, 11), WALK_ANIMATION_DELAY, PLAYER_VELOCITY, &staminaTexture, sf::Vector2f(STAMINA_BAR_WIDTH, STAMINA_BAR_HEIGHT), sf::Vector2u(4, 2));
 	NPCHandler NPCS;
@@ -54,6 +54,8 @@ int main() {
 	PortalActivationText.setFillColor(sf::Color::Black);
 	PortalActivationText.setPosition(PORTAL_TEXT_POSITION_X, PORTAL_TEXT_POSITION_Y);
 	PortalActivationText.setCharacterSize(16.0f);
+	PortalActivationText.setOutlineThickness(0.2f);
+	PortalActivationText.setOutlineColor(sf::Color::White);
 	GenerateBorders_1(borders);
 	NPCS.Create_NPC(&portal_dudeTexture, PortalActivationFont, portalDude_message_font, npc_portal_sound_buffer, speechTexture, sf::Vector2f(NPC_PORTAL_SIZE, NPC_PORTAL_SIZE), sf::Vector2u(10, 10), sf::Vector2f(NPC_PORTAL_POS_X, NPC_PORTAL_POS_Y), 0.165f);
 
@@ -107,15 +109,20 @@ int main() {
 				window.draw(PortalActivationText);
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 					switch (LEVEL) {
-					case 1:
-						backgroundSprite.setTexture(background2);
-						NPCS.Clear();
-						borders.Clear();
-						PortalActivationArea = Border(sf::Vector2f(PORTAL_SIZE, PORTAL_SIZE), sf::Vector2f(PORTAL_POSITION_X, PORTAL_POSITION_Y), 0.0f);
-						GenerateBorders_2(borders);
-						NPCS.Create_NPC(&magicianTexture, PortalActivationFont, portalDude_message_font, npc_magician_sound_buffer, speechTexture, sf::Vector2f(NPC_MAGICIAN_SIZE, NPC_MAGICIAN_SIZE), sf::Vector2u(4, 3), sf::Vector2f(NPC_MAGICIAN_POS_X, NPC_MAGICIAN_POS_Y), 0.185f);
-						player.setPosition(900.0f, 1100.0f);
+						case 1:
+							backgroundSprite.setTexture(background2);
+							NPCS.Clear();
+							borders.Clear();
+							PortalActivationArea = Border(sf::Vector2f(PORTAL_SIZE, PORTAL_SIZE), sf::Vector2f(PORTAL2_POSITION_X, PORTAL2_POSITION_Y), 0.0f);
+							GenerateBorders_2(borders);
+							NPCS.Create_NPC(&magicianTexture, PortalActivationFont, portalDude_message_font, npc_magician_sound_buffer, speechTexture, sf::Vector2f(NPC_MAGICIAN_SIZE, NPC_MAGICIAN_SIZE), sf::Vector2u(4, 3), sf::Vector2f(NPC_MAGICIAN_POS_X, NPC_MAGICIAN_POS_Y), 0.185f);
+							player.setPosition(700.0f, 1100.0f);
+							PortalActivationText.setPosition(3100.0f, 1148.0f);
+							break;
+						case 2:
+							return EXIT_SUCCESS;
 					}
+
 					LEVEL++;
 				}
 			}
